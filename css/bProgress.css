@@ -1,0 +1,16 @@
+.b_progress{
+     border:1px solid #AAAAAA;
+     border-radius:4px;
+     height: 20px;
+     width:525px;
+     margin-top: 5px;
+     margin-bottom: 5px;
+   }    
+ 
+  .b_progress_bar{
+     background-color: #0E90D2;
+     background:repeat-x scroll 50% 50% #CCCCCC;
+     height: 100%;
+     width:0%;
+     /*transition: width 0.6s ease 0s;*/
+  }
