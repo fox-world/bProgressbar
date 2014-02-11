@@ -14,3 +14,7 @@
      width:0%;
      /*transition: width 0.6s ease 0s;*/
   }
+
+  #b_progress_modal{
+    cursor:wait;
+  }

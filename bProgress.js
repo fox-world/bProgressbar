@@ -1,36 +1,41 @@
-     var pDefaultConfig={
+     
+	 var pDefaultSettings={
     	 offset:100,
-    	 pColor:"#0088cc" /*进度条的颜色*/
+    	 pColor:'#0088cc', /*color of the progress bar*/
      }
      
      var bProgressFlag;
      
-     function fnCalculateTime(count){ 	 
-    		 
-    	 var total=parseInt(count/(1000/pDefaultConfig.offset));  	 
+     function fnCalculateTime(count,settings){ 	 
+    
+		 var total=parseInt(count/(1000/pDefaultSettings.offset));  	 
          var hour=parseInt(total/3600);
     	 var minute=parseInt((total-hour*3600)/60);
     	 var second=parseInt(total-hour*3600-minute*60);
     	 
-    	 var timeCost=new String("所耗时间:\t");
+    	 var timeCost=new String(bProgressText.bProgressTimeCost+"\t");
     	 if(hour>0){
-    		 timeCost+=hour+" 小时 ";
+    		 timeCost+=hour+(hour>1?bProgressText.bHours:bProgressText.bHour);
     	 }
     	 if(minute>0){
-    		 timeCost+=minute+" 分 ";
+    		 timeCost+=minute+(minute>1?bProgressText.bMinutes:bProgressText.bMinute);
     	 }
-    	 timeCost+=second+" 秒 ";
+    	 timeCost+=second+(second>1?bProgressText.bSeconds:bProgressText.bSecond);
     	 
     	 $("#b_progress_time_cost").html(timeCost);
-    	 $("#b_progress_self div").css({"width":count%100+"%","background-color":pDefaultConfig.pColor})
-    	 
-    	 bProgressFlag=setTimeout("fnCalculateTime("+(count+1)+")",pDefaultConfig.offset);	  		 
-    	
+    	 $("#b_progress_self div").css({"width":count%100+"%","background-color":pDefaultSettings.pColor})
+    	 bProgressFlag=setTimeout("fnCalculateTime("+(count+1)+")",pDefaultSettings.offset);	
   
      }
      
-    function fnShowProgressBar(loadingMsg){
-    	
+    function fnShowProgressBar(pSettings){
+
+		pDefaultSettings=$.extend(true,{},pDefaultSettings,pSettings);
+		if(!pDefaultSettings.hasOwnProperty('processingMessage')){
+			pDefaultSettings.processingMessage=bProgressSettings.processingMessage;
+		}
+		
+
     	var progressHtml=new String();
     	progressHtml+='<div id="b_progress_modal" class="modal hide" tabindex="-1" role="dialog" aria-hidden="true">';
     	progressHtml+='  <div class="modal-body">';
@@ -55,10 +60,10 @@
     	}});
         
     	fnCalculateTime(0);
-        $("#b_progress_loading_message").html(loadingMsg);
+        $("#b_progress_loading_message").html(pDefaultSettings.processingMessage);
     }
     
-    function fnHideProgressBar(){
+    function fnCloseProgressBar(){
     	 clearTimeout(bProgressFlag);
     	 $("#b_progress_modal").modal("hide");
     	 $("#b_progress_modal").remove();

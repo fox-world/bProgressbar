@@ -13,7 +13,19 @@
    
    <link rel="stylesheet" type="text/css" href="../css/bProgress.css"/>
    <script type="text/javascript" src="../bProgress.js"></script>
-     
+   <script type="text/javascript" src="../locale/bProgressBar-zh_CN.js"></script>
+   <!--<script type="text/javascript" src="../locale/bProgressBar-en_US.js"></script>-->
+   <script type="text/javascript">
+    function testProgressbar(){
+	
+	 var config={
+	   //processingMessage:'Processing,waiting please!',
+	   //pColor:'#aaaaaa',
+	  };
+
+      fnShowProgressBar(config);
+	}
+   </script>
 </head>
 <body>
 
@@ -23,8 +35,8 @@
 <br/>
 
   <div style="margin-left:30px;">
-       <button class="btn btn-small" onclick="fnShowProgressBar('Processing,pleast waiting...')">Start&nbsp;Select</button>
-       <button  class="btn btn-small" onclick="fnHideProgressBar()">Stop&nbsp;Select</button>
+       <button class="btn btn-small" onclick="testProgressbar()">Start&nbsp;Select</button>
+       <button  class="btn btn-small" onclick="fnCloseProgressBar()">Stop&nbsp;Select</button>
   </div>
  
     
