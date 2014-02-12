@@ -55,9 +55,15 @@
             show:true
         });
         
+		//set the position of the progress bar modal
         $("#b_progress_modal").css({"margin-top":function(){
     		return ($(window).height()/2-$(this).height()*3)+"px";
     	}});
+
+		//set the backdrop color of the progress bar modal
+		if(pDefaultSettings.hasOwnProperty('processingMessage')){
+		  $(".modal-backdrop").css({"background-color":pDefaultSettings.bColor});
+		}
         
     	fnCalculateTime(0);
         $("#b_progress_loading_message").html(pDefaultSettings.processingMessage);
