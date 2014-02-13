@@ -41,7 +41,7 @@ the plugin also support Chinese and English international simply
         </script>
 
   
-* Stop the progress bar:
+* Stop the progress bar:  
    To stop the progress bar ,you just need to invoke the `fnCloseProgressBar()`like this:
 
         <script type="text/javascript">
