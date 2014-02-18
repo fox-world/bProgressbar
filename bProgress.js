@@ -57,7 +57,7 @@
         
 		//set the position of the progress bar modal
         $("#b_progress_modal").css({"margin-top":function(){
-    		return ($(window).height()/2-$(this).height()*3)+"px";
+    		return (document.documentElement.clientHeight/2-$(this).height()*3)+"px";
     	}});
 
 		//set the backdrop color of the progress bar modal
